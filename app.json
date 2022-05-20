@@ -1,0 +1,24 @@
+{
+  "name": "counter-app",
+  "scripts": {},
+  "env": {
+    "HEROKU_APP_NAME": {
+      "required": true
+    }
+  },
+  "HEROKU_PARENT_APP_NAME": {
+    "required": true
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "stack": "heroku-20"
+}
