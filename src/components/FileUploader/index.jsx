@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Flex, FormLabel, Input } from "@chakra-ui/react";
 
-const FileUploader = () => {
+const FileUploader = ({ setRandomCount }) => {
   const [file, setFile] = useState();
   const [array, setArray] = useState([]);
 
@@ -29,18 +29,18 @@ const FileUploader = () => {
       fileReader.onload = function (event) {
         const csvOutput = event.target.result;
         csvFileToArray(csvOutput);
-        A();
       };
 
       fileReader.readAsText(file);
     }
   };
 
-  const A = () => {
-    var item =
-      array["A" + (Math.floor(Math.random() * array.keys().length) + 1)];
-    console.log("item", item);
-  };
+  const random = Math.floor(Math.random() * array.length);
+
+  useEffect(() => {
+    setRandomCount(random);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [array]);
 
   return (
     <form onSubmit={handleOnSubmit}>

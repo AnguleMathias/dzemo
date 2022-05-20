@@ -11,6 +11,7 @@ import FileUploader from "./components/FileUploader";
 
 const App = () => {
   const [count, setCount] = useState(2);
+  const [randomCount, setRandomCount] = useState(0);
   const [isEven, setIsEven] = useState(false);
   const [counts, setCounts] = useState([2]);
 
@@ -103,7 +104,7 @@ const App = () => {
               : null,
           }}
         >
-          {count}
+          {randomCount === 0 ? count : randomCount}
         </Heading>
         <Flex>
           <Pagination counts={counts} />
@@ -120,7 +121,7 @@ const App = () => {
         </Flex>
       ) : null}
       <Flex mt="4rem">
-        <FileUploader />
+        <FileUploader setRandomCount={setRandomCount} />
       </Flex>
       <Stack direction="row" mt="4rem" spacing="14" align="center">
         {buttonActions.map((button, index) => (
