@@ -53,23 +53,44 @@ const App = () => {
 
   // add new count item to beginning of counts array
   const addToCounts = (count) => {
+    if (randomCount > 0) {
+      setCounts([randomCount, ...counts]);
+    }
     setCounts([count, ...counts]);
-    setCount(count);
   };
 
   // check if number is integer
   const isInteger = count % 1 === 0;
 
   useEffect(() => {
-    const fetchData = async () => {
-      const {
-        data: { iseven },
-      } = await isEvenApi(count);
-      setIsEven(iseven);
-    };
-    fetchData();
+    if (randomCount > 0) {
+      const fetchData = async () => {
+        const {
+          data: { iseven },
+        } = await isEvenApi(randomCount);
+        setIsEven(iseven);
+        setCount(randomCount);
+      };
+      fetchData();
+    }
+    
+  }, [ randomCount]);
+  
+  useEffect(() => {
+    
+    if (count > 2) {
+      const fetchData = async () => {
+        const {
+          data: { iseven },
+        } = await isEvenApi(count);
+        console.log("iseven", iseven);
+        setIsEven(iseven);
+      };
+      fetchData();
+    }
   }, [count]);
 
+  console.log("counts", count);
   return (
     <Flex flexDirection="column" alignItems="center" mt="5rem">
       <Flex
@@ -104,7 +125,7 @@ const App = () => {
               : null,
           }}
         >
-          {randomCount === 0 ? count : randomCount}
+          {count}
         </Heading>
         <Flex>
           <Pagination counts={counts} />
