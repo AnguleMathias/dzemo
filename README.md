@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Deployment
+Click to view hosted app --> [React Counter App](https://vermillion-pie-ca5d09.netlify.app/)
+
 ## Available Scripts
 
 In the project directory, you can run:
